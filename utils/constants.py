@@ -1,0 +1,41 @@
+ALA_TSE = "ALA-TSE"
+TSE_ALA = "TSE-ALA"
+ALA_MOW = "ALA-MOW"
+MOW_ALA = "MOW-ALA"
+ALA_CIT = "ALA-CIT"
+CIT_ALA = "CIT-ALA"
+TSE_MOW = "TSE-MOW"
+MOW_TSE = "MOW-TSE"
+TSE_LED = "TSE-LED"
+LED_TSE = "LED-TSE"
+
+DIRECTIONS = {
+    "ALMATY -> ASTANA": ALA_TSE,
+    "ASTANA -> ALMATY": TSE_ALA,
+    "ALMATY -> MOSCOW": ALA_MOW,
+    "MOSCOW -> ALMATY": MOW_ALA,
+    "ALMATY -> SHYMKENT": ALA_CIT,
+    "SHYMKENT -> ALMATY": CIT_ALA,
+    "ASTANA -> MOSCOW": TSE_MOW,
+    "MOSCOW -> ASTANA": MOW_TSE,
+    "ASTANA -> SAINTS-PETERSBURG": TSE_LED,
+    "SAINTS-PETERSBURG -> ASTANA": LED_TSE,
+
+}
+
+AVAILABLE_DIRECTIONS = [ALA_TSE, TSE_ALA, ALA_MOW, MOW_ALA, ALA_CIT, CIT_ALA, TSE_MOW, MOW_TSE, TSE_LED, LED_TSE]
+
+TOKEN = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJjZGNiYTc3Yi1lNzI2LTQ3MDgtYmI2Mi0xNDVmMGZlOTQwMGUiLCJpc3MiOiJjeXhHR29VODhrY29oUHFqOVdOTGFwVlZsUkVjVjRrWCIsImlhdCI6MTU0ODEzNjk0NywiZXhwIjoyODcyNjQ4OTQ3LCJjb25zdW1lciI6eyJpZCI6IjhlN2M5ODg1LTEwYjAtNDJhNS05MmNlLWM2ZGU2NmFhNWM2ZSIsIm5hbWUiOiJhdmlhdGEta3ouaG9zdCJ9fQ.iiPhSRyJM_QnFxCC3as8lGsabO2mFcEt5V-nrBmAmAg"
+HEADER = {
+    "Authorization": TOKEN,
+    "Content-Type": "application/json"
+}
+GET_SEARCH_PRICES_ID = 'https://kong-staging-platform.dev.cloud.aviata.team/airflow/search'
+GET_SEARCH_PRICES_RESULT = 'https://kong-staging-platform.dev.cloud.aviata.team/airflow/search/results/{}'
+QUERY = "{}1000E"
+
+DAYS_COUNT = 30
+API_DATE_FORMAT = "%Y%m%d"
+HUMAN_READABLE_DATE_FORMAT = "%Y-%m-%d"
+
+COUNT = 0
