@@ -29,10 +29,10 @@ Run app: python manage.py runserver
 
 ### List of available directions
 ```
-http://127.0.0.1:8000/directions/
+http://139.180.192.188/directions/
 ```
 
 ### Specific direction
 ```
-http://127.0.0.1:8000/directions/MOW-TSE/
+http://139.180.192.188/directions/ALA-TSE/
 ```
