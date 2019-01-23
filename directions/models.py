@@ -15,7 +15,7 @@ class AbstractCacheClass:
     @classmethod
     def set(cls, key, value):
         cache_key = cls._cache_key(key)
-        cache.set(key=cache_key, value=value)
+        cache.set(key=cache_key, value=value, timeout=60*60*24)
 
 
 class DirectionSearchIds(AbstractCacheClass):

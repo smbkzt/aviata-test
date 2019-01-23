@@ -1,8 +1,9 @@
 import os
 
+from celery.schedules import crontab
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -14,7 +15,6 @@ SECRET_KEY = '&4@dzs5uhvr$_t_$1-drbv$@t%%hh(q6qp-jv%iq$wo%8mdra2'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -61,7 +61,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'aviata.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
@@ -72,16 +71,27 @@ DATABASES = {
     }
 }
 
-BROKER_URL = 'amqp://guest:guest@localhost:5672//'
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'aviata_cache_table',
-        'TIMEOUT': 60 * 60 * 24  # 24 hours
-    }
+# Celery settings
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+CELERY_TIMEZONE = 'Asia/Almaty'
+CELERY_BEAT_SCHEDULE = {
+    'update-prices': {
+        'task': 'directions.tasks.update_flight_prices',
+        'schedule': crontab(hour=0),
+    },
 }
 
+# Redis cache database
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        },
+        "KEY_PREFIX": "aviata_test"
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -101,7 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -114,7 +123,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/

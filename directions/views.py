@@ -6,7 +6,7 @@ from django.views.generic import DetailView
 
 from directions.models import MinPrice
 from utils.constants import AVAILABLE_DIRECTIONS, DIRECTIONS
-from utils.requests_lib import get_months_keys, get_and_set_min_price
+from utils.requests_lib import get_months_keys, make_search
 
 
 class DirectionsView(View):
@@ -26,10 +26,12 @@ class DirectionDetailView(DetailView):
 
         months, keys = get_months_keys(direction)
 
-        with ThreadPoolExecutor(max_workers=50) as pool:
-            pool.map(get_and_set_min_price, keys)
+        with ThreadPoolExecutor(max_workers=15) as pool:
+            pool.map(make_search, keys)
 
         for m, k in zip(months, keys):
-            result.update({str(m): MinPrice.get(key=k)})
+            result.update({
+                str(m): MinPrice.get(key=k) if MinPrice.get(key=k) else "Поиск..."
+            })
 
         return JsonResponse(result)
