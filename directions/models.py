@@ -14,7 +14,8 @@ class AbstractCacheClass:
 
     @classmethod
     def flush(cls):
-        cache.clear()
+        pattern = '*{}*'.format(cls._cache_key(''))
+        cache.delete_pattern(pattern)
 
     @classmethod
     def set(cls, key, value):
