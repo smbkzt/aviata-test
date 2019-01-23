@@ -71,7 +71,7 @@ def get_and_set_cheapest_price(query: str, search_id: str, update=False):
     if response.status_code == 200:
         response_json = response.json()
         if response_json['status'] != 'done':
-            get_and_set_cheapest_price.apply_async(args=(query, search_id, True), countdown=30)
+            get_and_set_cheapest_price.apply_async(args=(query, search_id, True), countdown=20)
         prices = [int(i['price']['amount']) for i in response_json['items']]
         if prices:
             price = min(prices)

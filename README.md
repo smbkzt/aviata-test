@@ -16,16 +16,12 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Populate data
-```
-python manage.py initialize
-```
-
 ## Use
 ```
 Run celery: celery -A aviata worker -l info
 Run celery-beat: celery beat -A aviata -l info
 Run rabbitmq: sudo service rabbitmq-server start
+Populate data: python manage.py initialize
 Run app: python manage.py runserver
 ```
 

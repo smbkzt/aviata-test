@@ -13,6 +13,10 @@ class AbstractCacheClass:
         return obj
 
     @classmethod
+    def flush(cls):
+        cache.clear()
+
+    @classmethod
     def set(cls, key, value):
         cache_key = cls._cache_key(key)
         cache.set(key=cache_key, value=value, timeout=60*60*24)

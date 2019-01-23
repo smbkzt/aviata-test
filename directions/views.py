@@ -26,7 +26,7 @@ class DirectionDetailView(DetailView):
 
         months, keys = get_months_keys(direction)
 
-        with ThreadPoolExecutor(max_workers=15) as pool:
+        with ThreadPoolExecutor(max_workers=50) as pool:
             pool.map(make_search, keys)
 
         for m, k in zip(months, keys):
