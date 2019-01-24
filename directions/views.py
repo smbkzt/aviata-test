@@ -22,7 +22,7 @@ class DirectionDetailView(DetailView):
         direction = str(direction).upper()
 
         if direction not in AVAILABLE_DIRECTIONS:
-            return JsonResponse({'message': "Incorrect direction!"}, status=401)
+            return JsonResponse({'message': "Direction not found."}, status=404)
 
         months, keys = get_months_keys(direction)
 
